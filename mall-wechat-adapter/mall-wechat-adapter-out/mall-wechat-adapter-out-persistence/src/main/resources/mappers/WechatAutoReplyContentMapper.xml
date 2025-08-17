@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.mall.wechat.adapter.out.persistence.mapper.WechatAutoReplyContentMapper">
+
+    <!-- 根据规则ID查询回复内容 -->
+    <select id="findByRuleId" resultType="com.mall.wechat.domain.model.autoreply.WechatAutoReplyContent">
+        SELECT content_id, content, msg_type, rule_id,
+               created_at, created_by, updated_at, updated_by, is_deleted
+        FROM wechat_auto_reply_content 
+        WHERE rule_id = #{ruleId} AND is_deleted = 0
+        ORDER BY created_at ASC
+    </select>
+
+    <!-- 根据消息类型查询回复内容 -->
+    <select id="findByMsgType" resultType="com.mall.wechat.domain.model.autoreply.WechatAutoReplyContent">
+        SELECT content_id, content, msg_type, rule_id,
+               created_at, created_by, updated_at, updated_by, is_deleted
+        FROM wechat_auto_reply_content 
+        WHERE msg_type = #{msgType} AND is_deleted = 0
+        ORDER BY created_at ASC
+    </select>
+
+</mapper>

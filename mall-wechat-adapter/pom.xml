@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <parent>
+        <groupId>com.mall</groupId>
+        <artifactId>mall-wechat-service</artifactId>
+        <version>0.0.1-SNAPSHOT</version>
+    </parent>
+
+    <artifactId>mall-wechat-adapter</artifactId>
+    <name>mall-wechat-adapter</name>
+    <description>wechat Service Adapter Layer</description>
+    <packaging>pom</packaging>
+
+    <modules>
+        <module>mall-wechat-adapter-in</module>
+        <module>mall-wechat-adapter-out</module>
+    </modules>
+
+    <dependencies>
+        <!-- Application Layer -->
+        <dependency>
+            <groupId>com.mall</groupId>
+            <artifactId>mall-wechat-application</artifactId>
+            <version>${project.version}</version>
+        </dependency>
+
+        <!-- Common Module -->
+        <dependency>
+            <groupId>com.mall</groupId>
+            <artifactId>mall-wechat-common</artifactId>
+            <version>${project.version}</version>
+        </dependency>
+
+        <!-- Spring Web -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-web</artifactId>
+        </dependency>
+    </dependencies>
+</project>

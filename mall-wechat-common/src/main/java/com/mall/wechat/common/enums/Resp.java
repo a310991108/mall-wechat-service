@@ -1,0 +1,119 @@
+package com.mall.wechat.common.enums;
+
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+
+/**
+ * 响应状态码枚举
+ * 格式：WECHAT + 5位数字，总长度11位
+ * 00000-00999: 通用状态码
+ * 01000-01999: 认证授权相关
+ * 02000-02999: 微信用户相关
+ * 03000-03999: 自动回复相关
+ * 04000-04999: 菜单相关
+ * 05000-05999: 素材相关
+ * 06000-06999: 群发消息相关
+ * 07000-07999: 二维码相关
+ * 08000-08999: 模板消息相关
+ * 09000-09999: 通知日志相关
+ * 99000-99999: 系统错误相关
+ */
+@Getter
+@AllArgsConstructor
+public enum Resp {
+    // 通用状态码
+    SUCCESS("WECHAT00000", "success"),
+    FAIL("WECHAT99999", "fail"),
+    BAD_REQUEST("WECHAT00400", "请求错误"),
+    INVALID_PARAM("WECHAT00401", "非法参数"),
+    JSON_FORMAT_ERROR("WECHAT00402", "JSON格式错误"),
+    
+    // 认证授权相关
+    UNAUTHORIZED("WECHAT01000", "未授权"),
+    ACCESS_TOKEN_MISSING("WECHAT01100", "缺少访问令牌"),
+    ACCESS_TOKEN_INVALID("WECHAT01101", "访问令牌无效"),
+    ACCESS_TOKEN_EXPIRED("WECHAT01102", "访问令牌已过期"),
+    AUTHENTICATION_FAILED("WECHAT01004", "认证失败"),
+    INSUFFICIENT_PERMISSIONS("WECHAT01006", "权限不足"),
+    
+    // 微信用户相关
+    WECHAT_USER_NOT_FOUND("WECHAT02000", "微信用户不存在"),
+    WECHAT_USER_ALREADY_EXISTS("WECHAT02001", "微信用户已存在"),
+    WECHAT_USER_UPDATE_FAILED("WECHAT02002", "微信用户更新失败"),
+    WECHAT_USER_DELETE_FAILED("WECHAT02003", "微信用户删除失败"),
+    WECHAT_USER_BLACKLIST_FAILED("WECHAT02004", "微信用户拉黑失败"),
+    WECHAT_USER_TAG_FAILED("WECHAT02005", "微信用户标签操作失败"),
+    OPENID_MISSING("WECHAT02006", "缺少openid"),
+    OPENID_INVALID("WECHAT02007", "openid无效"),
+    
+    // 自动回复相关
+    AUTO_REPLY_RULE_NOT_FOUND("WECHAT03000", "自动回复规则不存在"),
+    AUTO_REPLY_RULE_CREATE_FAILED("WECHAT03001", "自动回复规则创建失败"),
+    AUTO_REPLY_RULE_UPDATE_FAILED("WECHAT03002", "自动回复规则更新失败"),
+    AUTO_REPLY_RULE_DELETE_FAILED("WECHAT03003", "自动回复规则删除失败"),
+    AUTO_REPLY_KEYWORD_NOT_FOUND("WECHAT03004", "自动回复关键词不存在"),
+    AUTO_REPLY_CONTENT_NOT_FOUND("WECHAT03005", "自动回复内容不存在"),
+    AUTO_REPLY_KEYWORD_EXISTS("WECHAT03006", "自动回复关键词已存在"),
+    
+    // 菜单相关
+    WECHAT_MENU_NOT_FOUND("WECHAT04000", "微信菜单不存在"),
+    WECHAT_MENU_CREATE_FAILED("WECHAT04001", "微信菜单创建失败"),
+    WECHAT_MENU_UPDATE_FAILED("WECHAT04002", "微信菜单更新失败"),
+    WECHAT_MENU_DELETE_FAILED("WECHAT04003", "微信菜单删除失败"),
+    WECHAT_MENU_PUBLISH_FAILED("WECHAT04004", "微信菜单发布失败"),
+    WECHAT_MENU_LEVEL_EXCEEDED("WECHAT04005", "微信菜单层级超限"),
+    WECHAT_MENU_COUNT_EXCEEDED("WECHAT04006", "微信菜单数量超限"),
+    
+    // 素材相关
+    WECHAT_MATERIAL_NOT_FOUND("WECHAT05000", "微信素材不存在"),
+    WECHAT_MATERIAL_UPLOAD_FAILED("WECHAT05001", "微信素材上传失败"),
+    WECHAT_MATERIAL_DELETE_FAILED("WECHAT05002", "微信素材删除失败"),
+    WECHAT_MATERIAL_UPDATE_FAILED("WECHAT05003", "微信素材更新失败"),
+    WECHAT_MATERIAL_TYPE_INVALID("WECHAT05004", "微信素材类型无效"),
+    WECHAT_MATERIAL_SIZE_EXCEEDED("WECHAT05005", "微信素材大小超限"),
+    WECHAT_MATERIAL_FORMAT_INVALID("WECHAT05006", "微信素材格式无效"),
+    
+    // 群发消息相关
+    WECHAT_MASS_SEND_NOT_FOUND("WECHAT06000", "群发消息不存在"),
+    WECHAT_MASS_SEND_CREATE_FAILED("WECHAT06001", "群发消息创建失败"),
+    WECHAT_MASS_SEND_FAILED("WECHAT06002", "群发消息发送失败"),
+    WECHAT_MASS_SEND_DELETE_FAILED("WECHAT06003", "群发消息删除失败"),
+    WECHAT_MASS_SEND_LIMIT_EXCEEDED("WECHAT06004", "群发消息次数超限"),
+    WECHAT_MASS_SEND_CONTENT_INVALID("WECHAT06005", "群发消息内容无效"),
+    
+    // 二维码相关
+    WECHAT_QRCODE_NOT_FOUND("WECHAT07000", "微信二维码不存在"),
+    WECHAT_QRCODE_CREATE_FAILED("WECHAT07001", "微信二维码创建失败"),
+    WECHAT_QRCODE_DELETE_FAILED("WECHAT07002", "微信二维码删除失败"),
+    WECHAT_QRCODE_EXPIRED("WECHAT07003", "微信二维码已过期"),
+    WECHAT_QRCODE_SCENE_ID_EXISTS("WECHAT07004", "微信二维码场景ID已存在"),
+    WECHAT_QRCODE_SCENE_ID_INVALID("WECHAT07005", "微信二维码场景ID无效"),
+    
+    // 模板消息相关
+    WECHAT_TEMPLATE_NOT_FOUND("WECHAT08000", "微信模板不存在"),
+    WECHAT_TEMPLATE_SEND_FAILED("WECHAT08001", "微信模板消息发送失败"),
+    WECHAT_TEMPLATE_PARAM_INVALID("WECHAT08002", "微信模板参数无效"),
+    WECHAT_TEMPLATE_ID_INVALID("WECHAT08003", "微信模板ID无效"),
+    
+    // 通知日志相关
+    WECHAT_NOTICE_LOG_NOT_FOUND("WECHAT09000", "微信通知日志不存在"),
+    WECHAT_NOTICE_LOG_CREATE_FAILED("WECHAT09001", "微信通知日志创建失败"),
+    WECHAT_NOTICE_LOG_UPDATE_FAILED("WECHAT09002", "微信通知日志更新失败"),
+    
+    // 微信API相关
+    WECHAT_API_ERROR("WECHAT10000", "微信API调用失败"),
+    WECHAT_API_RATE_LIMIT("WECHAT10001", "微信API调用频率超限"),
+    WECHAT_API_PARAM_ERROR("WECHAT10002", "微信API参数错误"),
+    WECHAT_API_ACCESS_TOKEN_ERROR("WECHAT10003", "微信API访问令牌错误"),
+    WECHAT_API_SIGNATURE_ERROR("WECHAT10004", "微信API签名错误"),
+    
+    // 系统错误相关
+    SYSTEM_ERROR("WECHAT99000", "系统错误"),
+    DATABASE_ERROR("WECHAT99001", "数据库错误"),
+    NETWORK_ERROR("WECHAT99002", "网络错误"),
+    FILE_OPERATION_ERROR("WECHAT99003", "文件操作错误"),
+    CACHE_ERROR("WECHAT99004", "缓存错误");
+    
+    private final String code;
+    private final String message;
+}
