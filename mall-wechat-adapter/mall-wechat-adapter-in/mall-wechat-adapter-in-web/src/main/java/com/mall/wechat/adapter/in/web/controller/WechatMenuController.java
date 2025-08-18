@@ -1,9 +1,9 @@
 package com.mall.wechat.adapter.in.web.controller;
 
+import com.mall.wechat.application.command.CreateWechatMenuCommand;
+import com.mall.wechat.application.command.UpdateWechatMenuCommand;
+import com.mall.wechat.application.dto.WechatMenuResponse;
 import com.mall.wechat.application.port.in.WechatMenuUseCase;
-import com.mall.wechat.application.port.in.command.CreateWechatMenuCommand;
-import com.mall.wechat.application.port.in.command.UpdateWechatMenuCommand;
-import com.mall.wechat.application.port.in.response.WechatMenuResponse;
 import com.mall.wechat.common.Result;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;

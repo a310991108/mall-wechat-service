@@ -13,6 +13,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -64,7 +65,7 @@ public class WechatMenuService implements WechatMenuUseCase {
     
     @Override
     @Transactional
-    public WechatMenuResponse updateWechatMenu(UpdateWechatMenuCommand command) {
+    public WechatMenuResponse updateWechatMenu(Long menuId, UpdateWechatMenuCommand command) {
         log.info("更新微信菜单，菜单ID: {}", command.getMenuId());
         
         WechatMenu wechatMenu = wechatMenuRepository.findById(command.getMenuId())
@@ -175,7 +176,12 @@ public class WechatMenuService implements WechatMenuUseCase {
         
         log.info("微信菜单禁用成功，菜单ID: {}", menuId);
     }
-    
+
+    @Override
+    public List<WechatMenuResponse> getWechatMenusByState(Integer menuState) {
+        return Collections.emptyList();
+    }
+
     /**
      * 转换为响应DTO
      */

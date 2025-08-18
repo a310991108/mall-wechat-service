@@ -10,7 +10,7 @@ import java.util.List;
  * 微信菜单用例接口
  */
 public interface WechatMenuUseCase {
-    
+
     /**
      * 创建微信菜单
      */
@@ -19,8 +19,8 @@ public interface WechatMenuUseCase {
     /**
      * 更新微信菜单
      */
-    WechatMenuResponse updateWechatMenu(UpdateWechatMenuCommand command);
-    
+    WechatMenuResponse updateWechatMenu(Long menuId, UpdateWechatMenuCommand command);
+
     /**
      * 根据ID查询微信菜单
      */
@@ -50,4 +50,9 @@ public interface WechatMenuUseCase {
      * 禁用微信菜单
      */
     void disableWechatMenu(Long menuId);
+
+    /**
+     * 根据菜单状态查询菜单列表
+     */
+    List<WechatMenuResponse> getWechatMenusByState(Integer menuState);
 }

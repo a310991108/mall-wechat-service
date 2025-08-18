@@ -18,19 +18,21 @@
         <module>mall-wechat-adapter-in-feign</module>
     </modules>
 
-    <dependencies>
-        <!-- Application Layer -->
-        <dependency>
-            <groupId>com.mall</groupId>
-            <artifactId>mall-wechat-application</artifactId>
-            <version>${project.version}</version>
-        </dependency>
+    <dependencyManagement>
+        <dependencies>
+            <!-- Application Layer -->
+            <dependency>
+                <groupId>com.mall</groupId>
+                <artifactId>mall-wechat-application</artifactId>
+                <version>${project.version}</version>
+            </dependency>
 
-        <!-- Common Module -->
-        <dependency>
-            <groupId>com.mall</groupId>
-            <artifactId>mall-wechat-common</artifactId>
-            <version>${project.version}</version>
-        </dependency>
-    </dependencies>
+            <!-- Common Module -->
+            <dependency>
+                <groupId>com.mall</groupId>
+                <artifactId>mall-wechat-common</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
 </project>
