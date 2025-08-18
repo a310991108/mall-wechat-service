@@ -8,6 +8,10 @@ import org.springframework.stereotype.Service;
 @Slf4j
 @Service
 @RequiredArgsConstructor
+/**
+ * 微信菜单接口实现
+ * @author zhangyong
+ */
 public class WechatMenuDeleteService implements WechatMenuDeleteUseCase {
     /**
      * 删除微信菜单

@@ -9,6 +9,10 @@ import org.springframework.stereotype.Service;
 @Slf4j
 @Service
 @RequiredArgsConstructor
+/**
+ * 微信菜单接口实现
+ * @author zhangyong
+ */
 public class WechatMenuGetByIdService implements WechatMenuGetByIdUseCase {
     /**
      * 根据ID查询微信菜单

@@ -12,6 +12,10 @@ import java.util.List;
 @Slf4j
 @Service
 @RequiredArgsConstructor
+/**
+ * 微信菜单接口实现
+ * @author zhangyong
+ */
 public class WechatMenuGetByParentIdService implements WechatMenuGetByParentIdUseCase {
     /**
      * 根据父菜单ID查询子菜单

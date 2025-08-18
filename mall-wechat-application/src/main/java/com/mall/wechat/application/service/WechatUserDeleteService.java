@@ -8,6 +8,10 @@ import org.springframework.stereotype.Service;
 @Slf4j
 @Service
 @RequiredArgsConstructor
+/**
+ * 微信用户接口实现
+ * @author zhangyong
+ */
 public class WechatUserDeleteService implements WechatUserDeleteUseCase {
     /**
      * 删除微信用户

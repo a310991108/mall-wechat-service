@@ -10,6 +10,10 @@ import org.springframework.stereotype.Service;
 @Slf4j
 @Service
 @RequiredArgsConstructor
+/**
+ * 微信用户接口实现
+ * @author zhangyong
+ */
 public class WechatUserCreateService implements WechatUserCreateUseCase {
     /**
      * 创建微信用户
