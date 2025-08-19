@@ -6,14 +6,13 @@ import com.mall.wechat.application.port.in.WechatMenuUpdateUseCase;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
-
-@Slf4j
-@Service
-@RequiredArgsConstructor
 /**
  * 微信菜单接口实现
  * @author zhangyong
  */
+@Slf4j
+@Service
+@RequiredArgsConstructor
 public class WechatMenuUpdateService implements WechatMenuUpdateUseCase {
     /**
      * 更新微信菜单
