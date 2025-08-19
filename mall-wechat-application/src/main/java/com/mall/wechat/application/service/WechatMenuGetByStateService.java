@@ -8,13 +8,13 @@ import org.springframework.stereotype.Service;
 
 import java.util.Collections;
 import java.util.List;
-@Slf4j
-@Service
-@RequiredArgsConstructor
 /**
  * 微信菜单接口实现
  * @author zhangyong
  */
+@Slf4j
+@Service
+@RequiredArgsConstructor
 public class WechatMenuGetByStateService implements WechatMenuGetByStateUseCase {
     /**
      * 根据菜单状态查询菜单列表

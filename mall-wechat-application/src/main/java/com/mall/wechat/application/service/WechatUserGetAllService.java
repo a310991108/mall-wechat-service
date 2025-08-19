@@ -9,13 +9,14 @@ import org.springframework.stereotype.Service;
 import java.util.Collections;
 import java.util.List;
 
-@Slf4j
-@Service
-@RequiredArgsConstructor
+
 /**
  * 微信用户接口实现
  * @author zhangyong
  */
+@Slf4j
+@Service
+@RequiredArgsConstructor
 public class WechatUserGetAllService implements WechatUserGetAllUseCase {
     /**
      * 查询所有微信用户
