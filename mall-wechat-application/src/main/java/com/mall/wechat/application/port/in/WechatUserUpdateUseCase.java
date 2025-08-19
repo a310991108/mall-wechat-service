@@ -10,5 +10,5 @@ public interface WechatUserUpdateUseCase {
     /**
      * 更新微信用户
      */
-    WechatUserResponse updateWechatUser(UpdateWechatUserCommand command);
+    WechatUserResponse updateWechatUser(Long userId,UpdateWechatUserCommand command);
 }
