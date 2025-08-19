@@ -1,12 +1,12 @@
 package com.mall.wechat.application.service;
 
-import com.mall.wechat.application.command.UpdateWechatUserCommand;
 import com.mall.wechat.application.dto.WechatUserResponse;
-import com.mall.wechat.application.port.in.WechatUserUpdateUseCase;
+import com.mall.wechat.application.port.in.WechatUserGetByTagIdUseCase;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 
 @Slf4j
 @Service
@@ -15,12 +15,9 @@ import org.springframework.stereotype.Service;
  * 微信用户接口实现
  * @author zhangyong
  */
-public class WechatUserUpdateService implements WechatUserUpdateUseCase {
-    /**
-     * 更新微信用户
-     */
+public class WechatUserGetByTagIdService implements WechatUserGetByTagIdUseCase {
     @Override
-    public WechatUserResponse updateWechatUser(Long userId,UpdateWechatUserCommand command) {
+    public List<WechatUserResponse> getWechatUsersByTagId(String wechatTagId) {
         return null;
     }
 }

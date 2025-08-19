@@ -10,5 +10,5 @@ public interface WechatMenuUpdateUseCase {
     /**
      * 更新微信菜单
      */
-    WechatMenuResponse updateWechatMenu(UpdateWechatMenuCommand command);
+    WechatMenuResponse updateWechatMenu(Long menuId,UpdateWechatMenuCommand command);
 }

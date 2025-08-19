@@ -19,7 +19,7 @@ public class WechatMenuUpdateService implements WechatMenuUpdateUseCase {
      * 更新微信菜单
      */
     @Override
-    public WechatMenuResponse updateWechatMenu(UpdateWechatMenuCommand command) {
+    public WechatMenuResponse updateWechatMenu(Long menuId,UpdateWechatMenuCommand command) {
         return null;
     }
 }

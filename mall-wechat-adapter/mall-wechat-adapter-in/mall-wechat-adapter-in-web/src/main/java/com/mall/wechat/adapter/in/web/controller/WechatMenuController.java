@@ -3,7 +3,7 @@ package com.mall.wechat.adapter.in.web.controller;
 import com.mall.wechat.application.command.CreateWechatMenuCommand;
 import com.mall.wechat.application.command.UpdateWechatMenuCommand;
 import com.mall.wechat.application.dto.WechatMenuResponse;
-import com.mall.wechat.application.port.in.WechatMenuUseCase;
+import com.mall.wechat.application.port.in.*;
 import com.mall.wechat.common.Result;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
@@ -22,13 +22,18 @@ import java.util.List;
 @RequestMapping("/api/wechat/menus")
 @RequiredArgsConstructor
 public class WechatMenuController {
-    
-    private final WechatMenuUseCase wechatMenuUseCase;
-    
+    private final WechatMenuCreateUseCase wechatMenuCreateUseCase;
+    private final WechatMenuUpdateUseCase wechatMenuUpdateUseCase;
+    private final WechatMenuDeleteUseCase wechatMenuDeleteUseCase;
+    private final WechatMenuGetByIdUseCase wechatMenuGetByIdUseCase;
+    private final WechatMenuGetAllUseCase wechatMenuGetAllUseCase;
+    private final WechatMenuGetByParentIdUseCase wechatMenuGetByParentIdUseCase;
+    private final WechatMenuGetByStateUseCase wechatMenuGetByStateUseCase;
+
     @Operation(summary = "创建微信菜单", description = "创建新的微信菜单")
     @PostMapping
     public Result<WechatMenuResponse> createWechatMenu(@Valid @RequestBody CreateWechatMenuCommand command) {
-        WechatMenuResponse response = wechatMenuUseCase.createWechatMenu(command);
+        WechatMenuResponse response = wechatMenuCreateUseCase.createWechatMenu(command);
         return Result.success(response);
     }
     
@@ -37,7 +42,7 @@ public class WechatMenuController {
     public Result<WechatMenuResponse> updateWechatMenu(
             @Parameter(description = "菜单ID") @PathVariable Long menuId,
             @Valid @RequestBody UpdateWechatMenuCommand command) {
-        WechatMenuResponse response = wechatMenuUseCase.updateWechatMenu(menuId, command);
+        WechatMenuResponse response = wechatMenuUpdateUseCase.updateWechatMenu(menuId, command);
         return Result.success(response);
     }
     
@@ -45,14 +50,14 @@ public class WechatMenuController {
     @GetMapping("/{menuId}")
     public Result<WechatMenuResponse> getWechatMenuById(
             @Parameter(description = "菜单ID") @PathVariable Long menuId) {
-        WechatMenuResponse response = wechatMenuUseCase.getWechatMenuById(menuId);
+        WechatMenuResponse response = wechatMenuGetByIdUseCase.getWechatMenuById(menuId);
         return Result.success(response);
     }
     
     @Operation(summary = "查询所有微信菜单", description = "查询所有微信菜单列表")
     @GetMapping
     public Result<List<WechatMenuResponse>> getAllWechatMenus() {
-        List<WechatMenuResponse> responses = wechatMenuUseCase.getAllWechatMenus();
+        List<WechatMenuResponse> responses = wechatMenuGetAllUseCase.getAllWechatMenus();
         return Result.success(responses);
     }
     
@@ -60,7 +65,7 @@ public class WechatMenuController {
     @GetMapping("/parent/{parentId}")
     public Result<List<WechatMenuResponse>> getWechatMenusByParentId(
             @Parameter(description = "父菜单ID") @PathVariable Integer parentId) {
-        List<WechatMenuResponse> responses = wechatMenuUseCase.getWechatMenusByParentId(parentId);
+        List<WechatMenuResponse> responses = wechatMenuGetByParentIdUseCase.getWechatMenusByParentId(parentId);
         return Result.success(responses);
     }
     
@@ -68,7 +73,7 @@ public class WechatMenuController {
     @GetMapping("/state/{menuState}")
     public Result<List<WechatMenuResponse>> getWechatMenusByState(
             @Parameter(description = "菜单状态") @PathVariable Integer menuState) {
-        List<WechatMenuResponse> responses = wechatMenuUseCase.getWechatMenusByState(menuState);
+        List<WechatMenuResponse> responses = wechatMenuGetByStateUseCase.getWechatMenusByState(menuState);
         return Result.success(responses);
     }
     
@@ -76,7 +81,7 @@ public class WechatMenuController {
     @DeleteMapping("/{menuId}")
     public Result<Void> deleteWechatMenu(
             @Parameter(description = "菜单ID") @PathVariable Long menuId) {
-        wechatMenuUseCase.deleteWechatMenu(menuId);
+        wechatMenuDeleteUseCase.deleteWechatMenu(menuId);
         return Result.success();
     }
 }
