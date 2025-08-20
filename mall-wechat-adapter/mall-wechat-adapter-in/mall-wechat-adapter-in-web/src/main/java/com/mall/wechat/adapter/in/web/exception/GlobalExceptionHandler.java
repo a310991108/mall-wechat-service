@@ -1,8 +1,8 @@
 package com.mall.wechat.adapter.in.web.exception;
 
-import com.mall.wechat.common.BusinessException;
 import com.mall.wechat.common.Result;
-import com.mall.wechat.common.Resp;
+import com.mall.wechat.common.enums.Resp;
+import com.mall.wechat.common.exception.BusinessException;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.validation.BindException;
@@ -12,6 +12,9 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
 
 /**
@@ -27,8 +30,14 @@ public class GlobalExceptionHandler {
     @ExceptionHandler(BusinessException.class)
     @ResponseStatus(HttpStatus.BAD_REQUEST)
     public Result<Void> handleBusinessException(BusinessException e) {
-        log.warn("业务异常: {}", e.getMessage());
-        return Result.fail(e.getResp());
+        Resp resp = e.getResp();
+        if (resp == null) {
+            log.info("业务异常（无枚举）：{}", e.getMessage());
+            return Result.fail(Result.HTTP_OK, "Wechat99000", e.getMessage(), null);
+        }
+
+        log.info("业务异常：{}", resp.getMessage());
+        return Result.fail(Result.HTTP_OK, resp.getCode(), resp.getMessage(), null);
     }
     
     /**
@@ -36,12 +45,23 @@ public class GlobalExceptionHandler {
      */
     @ExceptionHandler(MethodArgumentNotValidException.class)
     @ResponseStatus(HttpStatus.BAD_REQUEST)
-    public Result<Void> handleValidationException(MethodArgumentNotValidException e) {
-        String message = e.getBindingResult().getFieldErrors().stream()
-                .map(FieldError::getDefaultMessage)
-                .collect(Collectors.joining(", "));
-        log.warn("参数校验异常: {}", message);
-        return Result.fail(Resp.PARAM_ERROR.getCode(), message);
+    public Result<Object> handleValidationException(MethodArgumentNotValidException e) {
+        List<FieldError> fieldErrors = e.getBindingResult().getFieldErrors();
+        String errorMessage = fieldErrors.stream()
+                .map(error -> error.getField() + ": " + error.getDefaultMessage())
+                .collect(Collectors.joining("; "));
+
+        log.info("参数校验失败: {}", errorMessage);
+
+        // 收集详细的字段错误信息
+        Map<String, Object> fieldErrorMap = new HashMap<>();
+        fieldErrors.forEach(error ->
+                fieldErrorMap.put(error.getField(), error.getDefaultMessage())
+        );
+
+        Result<Object> result = Result.fail(Result.HTTP_BAD_REQUEST, Resp.INVALID_PARAM.getCode(), errorMessage, null);
+        result.setExtra(fieldErrorMap);
+        return result;
     }
     
     /**
@@ -49,12 +69,13 @@ public class GlobalExceptionHandler {
      */
     @ExceptionHandler(BindException.class)
     @ResponseStatus(HttpStatus.BAD_REQUEST)
-    public Result<Void> handleBindException(BindException e) {
-        String message = e.getBindingResult().getFieldErrors().stream()
-                .map(FieldError::getDefaultMessage)
-                .collect(Collectors.joining(", "));
-        log.warn("绑定异常: {}", message);
-        return Result.fail(Resp.PARAM_ERROR.getCode(), message);
+    public Result<Object> handleBindException(BindException e) {
+        String errorMessage = e.getBindingResult().getFieldErrors().stream()
+                .map(error -> error.getField() + ": " + error.getDefaultMessage())
+                .collect(Collectors.joining("; "));
+
+        log.info("参数绑定失败: {}", errorMessage);
+        return Result.fail(Result.HTTP_BAD_REQUEST, Resp.INVALID_PARAM.getCode(), errorMessage, null);
     }
     
     /**
